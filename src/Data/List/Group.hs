@@ -1,5 +1,15 @@
 {-# LANGUAGE Safe #-}
 
+{-|
+Module      : Text.Numerals
+Description : A module to group elements of a list together in sequences.
+Maintainer  : hapytexeu+gh@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+A module that defines functions that groups a list of elements into subsequences.
+-}
+
 module Data.List.Group (
   -- * Grouping with the key
     groupWith, groupWith'
