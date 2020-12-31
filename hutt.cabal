@@ -1,8 +1,8 @@
-name:                hutils
+name:                hutt
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/KommuSoft/hutils#readme
+homepage:            https://github.com/hapytex/hutt#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Willem Van Onsem
@@ -22,4 +22,4 @@ library
 
 source-repository head
   type:     git
-  location: https://github.com/KommuSoft/hutils
+  location: https://github.com/hapytex/hutt
