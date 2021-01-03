@@ -1,7 +1,7 @@
 {-# LANGUAGE Safe #-}
 
 {-|
-Module      : Text.Numerals
+Module      : Data.List.Group
 Description : A module to group elements of a list together in sequences.
 Maintainer  : hapytexeu+gh@gmail.com
 Stability   : experimental
