@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE Safe #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">{-|
+Module      : Data.List.Maybe
+Description : A module that performs list processing with 'Maybe' types.
+Maintainer  : hapytexeu+gh@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+A module that works with lists of 'Maybe's.
+-}</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Data.List.Maybe</span><span> </span><span class="hs-special">(</span><span>
+</span><span id="line-14"></span><span>    </span><span class="annot"><a href="Data.List.Maybe.html#MaybeList"><span class="hs-identifier">MaybeList</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-15"></span><span>    </span><span class="annot"><a href="Data.List.Maybe.html#concatMapMaybes"><span class="hs-identifier">concatMapMaybes</span></a></span><span>
+</span><span id="line-16"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">catMaybes</span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- | A type synonym for a list of 'Maybe' values.</span><span>
+</span><span id="line-21"></span><span class="hs-keyword">type</span><span> </span><span id="MaybeList"><span class="annot"><a href="Data.List.Maybe.html#MaybeList"><span class="hs-identifier hs-var">MaybeList</span></a></span></span><span> </span><span id="local-6989586621679056633"><span class="annot"><a href="#local-6989586621679056633"><span class="hs-identifier hs-type">a</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679056633"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-22"></span><span>
+</span><span id="line-23"></span><span class="hs-comment">-- | Concatenate the items wrapped in a 'Just' when we perform a mapping and concatenate the results of these mappings.</span><span>
+</span><span id="line-24"></span><span id="local-6989586621679056630"><span id="local-6989586621679056631"><span id="local-6989586621679056632"><span class="annot"><a href="Data.List.Maybe.html#concatMapMaybes"><span class="hs-identifier hs-type">concatMapMaybes</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Foldable</span></span><span> </span><span class="annot"><a href="#local-6989586621679056632"><span class="hs-identifier hs-type">f</span></a></span><span>
+</span><span id="line-25"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056631"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Data.List.Maybe.html#MaybeList"><span class="hs-identifier hs-type">MaybeList</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679056630"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">)</span><span>  </span><span class="hs-comment">-- ^ The function that is used to perform a mapping from the items to a list of 'Maybe' values.</span><span>
+</span><span id="line-26"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679056632"><span class="hs-identifier hs-type">f</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679056631"><span class="hs-identifier hs-type">a</span></a></span><span>  </span><span class="hs-comment">-- ^ The given 'Foldable' of items for which we perform a mapping.</span><span>
+</span><span id="line-27"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679056630"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^ As result a list of items that were wrapped in a 'Just' data constructor.</span></span></span></span><span>
+</span><span id="line-28"></span><span id="concatMapMaybes"><span class="annot"><span class="annottext">concatMapMaybes :: (a -&gt; MaybeList b) -&gt; f a -&gt; [b]
+</span><a href="Data.List.Maybe.html#concatMapMaybes"><span class="hs-identifier hs-var hs-var">concatMapMaybes</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(a -&gt; [b]) -&gt; f a -&gt; [b]
+forall (t :: * -&gt; *) a b. Foldable t =&gt; (a -&gt; [b]) -&gt; t a -&gt; [b]
+</span><span class="hs-identifier hs-var">concatMap</span></span><span> </span><span class="annot"><span class="annottext">((a -&gt; [b]) -&gt; f a -&gt; [b])
+-&gt; ((a -&gt; MaybeList b) -&gt; a -&gt; [b])
+-&gt; (a -&gt; MaybeList b)
+-&gt; f a
+-&gt; [b]
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="hs-special">(</span><span> </span><span class="annot"><span class="annottext">MaybeList b -&gt; [b]
+forall a. [Maybe a] -&gt; [a]
+</span><span class="hs-identifier hs-var">catMaybes</span></span><span> </span><span class="annot"><span class="annottext">(MaybeList b -&gt; [b]) -&gt; (a -&gt; MaybeList b) -&gt; a -&gt; [b]
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span class="hs-special">)</span><span>
+</span><span id="line-29"></span><span id="local-6989586621679056626"><span id="local-6989586621679056627"><span class="hs-pragma">{-# SPECIALISE</span><span> </span><span class="annot"><a href="Data.List.Maybe.html#concatMapMaybes"><span class="hs-pragma hs-type">concatMapMaybes</span></a></span><span> </span><span class="hs-pragma">::</span><span> </span><span class="hs-pragma">(</span><span class="annot"><a href="#local-6989586621679056627"><span class="hs-pragma hs-type">a</span></a></span><span> </span><span class="hs-pragma">-&gt;</span><span> </span><span class="hs-pragma">[</span><span class="annot"><span class="hs-pragma hs-type">Maybe</span></span><span> </span><span class="annot"><a href="#local-6989586621679056626"><span class="hs-pragma hs-type">b</span></a></span><span class="hs-pragma">]</span><span class="hs-pragma">)</span><span> </span><span class="hs-pragma">-&gt;</span><span> </span><span class="hs-pragma">[</span><span class="annot"><a href="#local-6989586621679056627"><span class="hs-pragma hs-type">a</span></a></span><span class="hs-pragma">]</span><span> </span><span class="hs-pragma">-&gt;</span><span> </span><span class="hs-pragma">[</span><span class="annot"><a href="#local-6989586621679056626"><span class="hs-pragma hs-type">b</span></a></span><span class="hs-pragma">]</span><span> </span><span class="hs-pragma">#-}</span></span></span><span>
+</span><span id="line-30"></span></pre></body></html>

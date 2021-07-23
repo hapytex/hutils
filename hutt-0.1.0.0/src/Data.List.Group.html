@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# LANGUAGE Safe #-}</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">{-|
+Module      : Data.List.Group
+Description : A module to group elements of a list together in sequences.
+Maintainer  : hapytexeu+gh@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+A module that defines functions that groups a list of elements into subsequences.
+-}</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Data.List.Group</span><span> </span><span class="hs-special">(</span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="hs-comment">-- * Grouping with the key</span></span><span>
+</span><span id="line-15"></span><span>    </span><span class="annot"><a href="Data.List.Group.html#groupWith"><span class="hs-identifier">groupWith</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Data.List.Group.html#groupWith%27"><span class="hs-identifier">groupWith'</span></a></span><span>
+</span><span id="line-16"></span><span>  </span><span class="hs-special">)</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-17"></span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List.NonEmpty</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">NonEmpty</span></span><span class="hs-special">(</span><span class="annot"><span class="hs-operator">(:|)</span></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- | Group the given list of items to a list of 'NonEmpty' 2-tuples with the</span><span>
+</span><span id="line-21"></span><span class="hs-comment">-- &quot;key&quot; and the value for a given mapping function and equavalence relation.</span><span>
+</span><span id="line-22"></span><span id="local-6989586621679056613"><span id="local-6989586621679056614"><span class="annot"><a href="Data.List.Group.html#groupWith%27"><span class="hs-identifier hs-type">groupWith'</span></a></span><span>
+</span><span id="line-23"></span><span>  </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056614"><span class="hs-identifier hs-type">b</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679056614"><span class="hs-identifier hs-type">b</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span class="hs-special">)</span><span>  </span><span class="hs-comment">-- ^ The given equivalence relation.</span><span>
+</span><span id="line-24"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056613"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679056614"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">)</span><span>  </span><span class="hs-comment">-- ^ The given mapping function.</span><span>
+</span><span id="line-25"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679056613"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^ The list of items to group into non-empty sequences.</span><span>
+</span><span id="line-26"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056614"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">NonEmpty</span></span><span> </span><span class="annot"><a href="#local-6989586621679056613"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^ The list of groups.</span></span></span><span>
+</span><span id="line-27"></span><span id="groupWith%27"><span class="annot"><span class="annottext">groupWith' :: (b -&gt; b -&gt; Bool) -&gt; (a -&gt; b) -&gt; [a] -&gt; [(b, NonEmpty a)]
+</span><a href="Data.List.Group.html#groupWith%27"><span class="hs-identifier hs-var hs-var">groupWith'</span></a></span></span><span> </span><span id="local-6989586621679056608"><span class="annot"><span class="annottext">eq :: b -&gt; b -&gt; Bool
+</span><a href="#local-6989586621679056608"><span class="hs-identifier hs-var">eq</span></a></span></span><span> </span><span id="local-6989586621679056607"><span class="annot"><span class="annottext">f :: a -&gt; b
+</span><a href="#local-6989586621679056607"><span class="hs-identifier hs-var">f</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[a] -&gt; [(b, NonEmpty a)]
+</span><a href="#local-6989586621679056606"><span class="hs-identifier hs-var">go</span></a></span><span>
+</span><span id="line-28"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679056606"><span class="annot"><span class="annottext">go :: [a] -&gt; [(b, NonEmpty a)]
+</span><a href="#local-6989586621679056606"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-29"></span><span>          </span><span class="annot"><a href="#local-6989586621679056606"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="hs-glyph">~</span><span class="hs-special">(</span><span id="local-6989586621679056605"><span class="annot"><span class="annottext">x :: a
+</span><a href="#local-6989586621679056605"><span class="hs-identifier hs-var">x</span></a></span></span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span id="local-6989586621679056604"><span class="annot"><span class="annottext">xs :: [a]
+</span><a href="#local-6989586621679056604"><span class="hs-identifier hs-var">xs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">b
+</span><a href="#local-6989586621679056603"><span class="hs-identifier hs-var">fx</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679056605"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">a -&gt; [a] -&gt; NonEmpty a
+forall a. a -&gt; [a] -&gt; NonEmpty a
+</span><span class="hs-operator hs-var">:|</span></span><span> </span><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621679056602"><span class="hs-identifier hs-var">ys</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(b, NonEmpty a) -&gt; [(b, NonEmpty a)] -&gt; [(b, NonEmpty a)]
+forall a. a -&gt; [a] -&gt; [a]
+</span><span class="hs-glyph hs-var">:</span></span><span> </span><span class="annot"><span class="annottext">[a] -&gt; [(b, NonEmpty a)]
+</span><a href="#local-6989586621679056606"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621679056601"><span class="hs-identifier hs-var">zs</span></a></span><span>
+</span><span id="line-30"></span><span>              </span><span class="hs-keyword">where</span><span> </span><span class="hs-glyph">~</span><span class="hs-special">(</span><span id="local-6989586621679056602"><span class="annot"><span class="annottext">ys :: [a]
+</span><a href="#local-6989586621679056602"><span class="hs-identifier hs-var">ys</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679056601"><span class="annot"><span class="annottext">zs :: [a]
+</span><a href="#local-6989586621679056601"><span class="hs-identifier hs-var">zs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(a -&gt; Bool) -&gt; [a] -&gt; ([a], [a])
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; ([a], [a])
+</span><span class="hs-identifier hs-var">span</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">b -&gt; b -&gt; Bool
+</span><a href="#local-6989586621679056608"><span class="hs-identifier hs-var">eq</span></a></span><span> </span><span class="annot"><span class="annottext">b
+</span><a href="#local-6989586621679056603"><span class="hs-identifier hs-var">fx</span></a></span><span> </span><span class="annot"><span class="annottext">(b -&gt; Bool) -&gt; (a -&gt; b) -&gt; a -&gt; Bool
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">a -&gt; b
+</span><a href="#local-6989586621679056607"><span class="hs-identifier hs-var">f</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[a]
+</span><a href="#local-6989586621679056604"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-31"></span><span>                    </span><span id="local-6989586621679056603"><span class="annot"><span class="annottext">fx :: b
+</span><a href="#local-6989586621679056603"><span class="hs-identifier hs-var hs-var">fx</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; b
+</span><a href="#local-6989586621679056607"><span class="hs-identifier hs-var">f</span></a></span><span> </span><span class="annot"><span class="annottext">a
+</span><a href="#local-6989586621679056605"><span class="hs-identifier hs-var">x</span></a></span><span>
+</span><span id="line-32"></span><span>
+</span><span id="line-33"></span><span class="hs-comment">-- | Group the given list of items to a list of 'NonEmpty' 2-tuples with the</span><span>
+</span><span id="line-34"></span><span class="hs-comment">-- &quot;key&quot; and the value for a given mapping function.</span><span>
+</span><span id="line-35"></span><span id="local-6989586621679056597"><span id="local-6989586621679056598"><span class="annot"><a href="Data.List.Group.html#groupWith"><span class="hs-identifier hs-type">groupWith</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Eq</span></span><span> </span><span class="annot"><a href="#local-6989586621679056598"><span class="hs-identifier hs-type">b</span></a></span><span>
+</span><span id="line-36"></span><span>  </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056597"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679056598"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">)</span><span>  </span><span class="hs-comment">-- ^ The given mapping function.</span><span>
+</span><span id="line-37"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679056597"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^ The list of items to group into non-empty sequences.</span><span>
+</span><span id="line-38"></span><span>  </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><a href="#local-6989586621679056598"><span class="hs-identifier hs-type">b</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">NonEmpty</span></span><span> </span><span class="annot"><a href="#local-6989586621679056597"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>  </span><span class="hs-comment">-- ^ The list of groups.</span></span></span><span>
+</span><span id="line-39"></span><span id="groupWith"><span class="annot"><span class="annottext">groupWith :: (a -&gt; b) -&gt; [a] -&gt; [(b, NonEmpty a)]
+</span><a href="Data.List.Group.html#groupWith"><span class="hs-identifier hs-var hs-var">groupWith</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(b -&gt; b -&gt; Bool) -&gt; (a -&gt; b) -&gt; [a] -&gt; [(b, NonEmpty a)]
+forall b a.
+(b -&gt; b -&gt; Bool) -&gt; (a -&gt; b) -&gt; [a] -&gt; [(b, NonEmpty a)]
+</span><a href="Data.List.Group.html#groupWith%27"><span class="hs-identifier hs-var">groupWith'</span></a></span><span> </span><span class="annot"><span class="annottext">b -&gt; b -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">(==)</span></span><span>
+</span><span id="line-40"></span></pre></body></html>
