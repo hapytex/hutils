@@ -25,5 +25,5 @@ concatMapMaybes :: Foldable f
   => (a -> MaybeList b)  -- ^ The function that is used to perform a mapping from the items to a list of 'Maybe' values.
   -> f a  -- ^ The given 'Foldable' of items for which we perform a mapping.
   -> [b]  -- ^ As result a list of items that were wrapped in a 'Just' data constructor.
-concatMapMaybes f = concatMap . catMaybes
+concatMapMaybes = concatMap . ( catMaybes .)
 {-# SPECIALISE concatMapMaybes :: (a -> [Maybe b]) -> [a] -> [b] #-}
